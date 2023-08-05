@@ -1,12 +1,13 @@
-import Header from "../components/Header";
+// import SideNav from "../components/SideNav";
 import Footer from "../components/Footer";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
+      {/* <SideNav /> */}
+
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
