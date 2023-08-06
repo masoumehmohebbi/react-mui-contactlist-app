@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-mui-contactlist-app/static/css/main.abd64e84.css",
-    "main.js": "/react-mui-contactlist-app/static/js/main.0441c732.js",
+    "main.js": "/react-mui-contactlist-app/static/js/main.689738d8.js",
     "index.html": "/react-mui-contactlist-app/index.html",
     "main.abd64e84.css.map": "/react-mui-contactlist-app/static/css/main.abd64e84.css.map",
-    "main.0441c732.js.map": "/react-mui-contactlist-app/static/js/main.0441c732.js.map"
+    "main.689738d8.js.map": "/react-mui-contactlist-app/static/js/main.689738d8.js.map"
   },
   "entrypoints": [
     "static/css/main.abd64e84.css",
-    "static/js/main.0441c732.js"
+    "static/js/main.689738d8.js"
   ]
 }
