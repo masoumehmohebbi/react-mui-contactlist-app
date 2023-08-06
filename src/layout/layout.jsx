@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
       {/* <SideNav /> */}
 
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
