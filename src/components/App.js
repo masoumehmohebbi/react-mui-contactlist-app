@@ -11,6 +11,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" exact element={<ContactList />} />
+          <Route path="*" exact element={<ContactList />} />
           <Route path="/add" element={<AddContact />} />
         </Routes>
       </Layout>
