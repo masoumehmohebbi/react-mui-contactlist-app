@@ -16,7 +16,7 @@ React ContactList App, based on Material-UI library
 ## Technologies used in this App
 <ul>
   <li>HTML</li>
-  <li>Tailwind CSS</li>
+  <li>Material Ui</li>
   <li>ReactJs</li>
   <li>Json db</li>
   <li>Axios Library</li>
