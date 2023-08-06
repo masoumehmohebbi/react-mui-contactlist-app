@@ -6,7 +6,7 @@ const AddContact = () => {
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
       <SideNav />
-      <Box mt={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         add
       </Box>
     </Box>

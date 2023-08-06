@@ -40,12 +40,13 @@ export default function ContactList() {
       setContacts(filteredContacts);
     } catch (error) {}
   };
+
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
       <SideNav />
-      <Box mt={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Grid container spacing={2}>
-          {contacts &&
+          {contacts ? (
             contacts.map((contact) => (
               <Grid xs={12} sm={6} md={4} lg={3} key={contact.id}>
                 <Card
@@ -76,21 +77,32 @@ export default function ContactList() {
                       }}
                     >
                       <AccessTimeFilled
-                        sx={{ color: "#16a34a", fontSize: "18px" }}
+                        sx={{ color: "#fdba74", fontSize: "18px" }}
                       />
-                      <Typography component="span"> 8/3/2023</Typography>
+                      <Typography
+                        component="span"
+                        sx={{ color: "#fb923c", fontWeight: "600" }}
+                      >
+                        {new Date().toLocaleString() + ""}
+                      </Typography>
                     </Typography>
                     <Typography
-                      sx={{ display: "flex", gap: "9px", fontWeight: "900" }}
+                      sx={{ display: "flex", gap: "9px" }}
                       gutterBottom
                       variant="h5"
                       component="div"
                     >
-                      <Typography component="span">
+                      <Typography
+                        component="span"
+                        sx={{ fontWeight: "800", mt: "11px", color: "#14532d" }}
+                      >
                         {contact.firstName}
                       </Typography>
-                      <Typography component="span">
-                        {contacts.lastName}
+                      <Typography
+                        component="span"
+                        sx={{ fontWeight: "800", mt: "11px", color: "#14532d" }}
+                      >
+                        {contact.lastName}
                       </Typography>
                     </Typography>
                   </CardContent>
@@ -106,11 +118,11 @@ export default function ContactList() {
                     <Typography component="div">
                       {contact.gender === "female" ? (
                         <Tooltip title="Female">
-                          <Female sx={{ color: "red" }} />
+                          <Female sx={{ color: "#dc2626", fontSize: "24px" }} />
                         </Tooltip>
                       ) : (
                         <Tooltip title="Male">
-                          <Male sx={{ color: "blue" }} />
+                          <Male sx={{ color: "#2563eb", fontSize: "24px" }} />
                         </Tooltip>
                       )}
                     </Typography>
@@ -129,7 +141,7 @@ export default function ContactList() {
                               color: "#166534",
                             },
                             cursor: "pointer",
-                            color: "#16a34a",
+                            color: "#4f46e5",
                             fontSize: "19px",
                           }}
                         />
@@ -158,7 +170,7 @@ export default function ContactList() {
                               color: "#166534",
                             },
                             cursor: "pointer",
-                            color: "#16a34a",
+                            color: "#e11d48",
                             fontSize: "19px",
                           }}
                         />
@@ -167,7 +179,12 @@ export default function ContactList() {
                   </CardActions>
                 </Card>
               </Grid>
-            ))}
+            ))
+          ) : (
+            <Typography sx={{ width: "100%", bgcolor: "red" }} component="span">
+              No Contacts Yet!
+            </Typography>
+          )}
         </Grid>
       </Box>
     </Box>
