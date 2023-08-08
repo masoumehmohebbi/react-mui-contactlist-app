@@ -19,9 +19,11 @@ import {
 import { useState, useEffect } from "react";
 import getContacts from "../services/getContactsService";
 import deleteContact from "../services/deleteContactsService";
+import { useNavigate } from "react-router-dom";
 
 export default function ContactList() {
   const [contacts, setContacts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -42,7 +44,7 @@ export default function ContactList() {
   };
 
   return (
-    <Box sx={{ display: "flex", fontSize: "35px" }}>
+    <Box sx={{ display: "flex" }}>
       <SideNav />
       <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Grid container spacing={2}>
@@ -77,11 +79,11 @@ export default function ContactList() {
                       }}
                     >
                       <AccessTimeFilled
-                        sx={{ color: "#fdba74", fontSize: "18px" }}
+                        sx={{ color: "#84cc16", fontSize: "18px" }}
                       />
                       <Typography
                         component="span"
-                        sx={{ color: "#fb923c", fontWeight: "600" }}
+                        sx={{ color: "#65a30d", fontWeight: "600" }}
                       >
                         {new Date().toLocaleString() + ""}
                       </Typography>
@@ -136,6 +138,11 @@ export default function ContactList() {
                     >
                       <Tooltip title="Detail">
                         <RemoveRedEye
+                          onClick={() =>
+                            navigate(`/user/${contact.id}`, {
+                              state: { contact: contact },
+                            })
+                          }
                           sx={{
                             "&:hover": {
                               color: "#166534",

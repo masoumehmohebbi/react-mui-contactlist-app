@@ -176,7 +176,11 @@ export default function SideNav() {
             }}
           >
             <Search
-              sx={{ display: "flex", alignItems: "center", color: "#f0fdf4" }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                color: "#f0fdf4",
+              }}
             >
               <SearchIconWrapper>
                 <SearchIcon />
@@ -188,30 +192,49 @@ export default function SideNav() {
             </Search>
 
             <Typography
+              component="div"
               sx={{
-                bgcolor: "#6ee7b7",
-                borderRadius: "50%",
-                // padding: "20px 6px",
-                width: "42px",
-                cursor: "pointer",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
+                justifyContent: "space-between",
+                width: { xs: "58%", md: "59%", lg: "62%" },
               }}
             >
-              <Link
-                to={"/add"}
+              <Typography
                 sx={{
-                  height: "41px",
+                  fontSize: { xs: "25px", lg: "28px" },
+                  textTransform: "uppercase",
+                  fontWeight: "600",
+                  color: "#14532d",
+                }}
+              >
+                Contact list
+              </Typography>
+              <Typography
+                sx={{
+                  bgcolor: "#6ee7b7",
+                  borderRadius: "50%",
+                  // padding: "20px 6px",
+                  width: "42px",
+                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   textAlign: "center",
                 }}
               >
-                <PersonAdd sx={{ color: "#166534", fontSize: "30px" }} />
-              </Link>
+                <Link
+                  to={"/add"}
+                  sx={{
+                    height: "41px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <PersonAdd sx={{ color: "#166534", fontSize: "30px" }} />
+                </Link>
+              </Typography>
             </Typography>
           </Box>
         </Toolbar>

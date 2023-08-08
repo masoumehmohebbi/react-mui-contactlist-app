@@ -4,35 +4,21 @@
       "id": 1,
       "firstName": "Masoume",
       "lastName": "Mohebbi",
-      "Email": "masoume@gmail.com",
+      "email": "masoume@gmail.com",
       "gender": "female"
     },
     {
       "id": 2,
       "firstName": "Masoume",
       "lastName": "Mohebbi",
-      "Email": "masoume@gmail.com",
+      "email": "masoume@gmail.com",
       "gender": "female"
     },
     {
       "id": 3,
       "firstName": "Masoume",
       "lastName": "Mohebbi",
-      "Email": "masoume@gmail.com",
-      "gender": "male"
-    },
-    {
-      "id": 4,
-      "firstName": "Masoume",
-      "lastName": "Mohebbi",
-      "Email": "masoume@gmail.com",
-      "gender": "female"
-    },
-    {
-      "id": 5,
-      "firstName": "Masoume",
-      "lastName": "Mohebbi",
-      "Email": "masoume@gmail.com",
+      "email": "masoumddddfe@gmail.com",
       "gender": "male"
     }
   ]
