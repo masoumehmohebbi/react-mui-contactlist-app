@@ -1,25 +1,22 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "firstName": "Masoume",
-      "lastName": "Mohebbi",
-      "email": "masoume@gmail.com",
-      "gender": "female"
+      "firstname": "sami",
+      "lastname": "mohebb",
+      "phonenumber": "+09223232",
+      "email": "sami@gamil.com",
+      "gender": "female",
+      "relationship": "sister",
+      "id": 1
     },
     {
-      "id": 2,
-      "firstName": "Masoume",
-      "lastName": "Mohebbi",
-      "email": "masoume@gmail.com",
-      "gender": "female"
-    },
-    {
-      "id": 3,
-      "firstName": "Masoume",
-      "lastName": "Mohebbi",
-      "email": "masoumddddfe@gmail.com",
-      "gender": "male"
+      "firstname": "mmd",
+      "lastname": "mmdy",
+      "phonenumber": "+376 658 5",
+      "email": "nmmm",
+      "gender": "male",
+      "relationship": "bf",
+      "id": 2
     }
   ]
 }
