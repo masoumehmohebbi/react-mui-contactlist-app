@@ -98,13 +98,13 @@ export default function ContactList() {
                         component="span"
                         sx={{ fontWeight: "800", mt: "11px", color: "#14532d" }}
                       >
-                        {contact.firstName}
+                        {contact.firstname}
                       </Typography>
                       <Typography
                         component="span"
                         sx={{ fontWeight: "800", mt: "11px", color: "#14532d" }}
                       >
-                        {contact.lastName}
+                        {contact.lastname}
                       </Typography>
                     </Typography>
                   </CardContent>
@@ -156,6 +156,7 @@ export default function ContactList() {
 
                       <Tooltip title="Edit">
                         <Edit
+                          onClick={() => navigate(`/edit/${contact.id}`)}
                           sx={{
                             "&:hover": {
                               color: "#166534",

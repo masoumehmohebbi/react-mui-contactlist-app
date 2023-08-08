@@ -13,7 +13,8 @@ import { useLocation } from "react-router-dom";
 
 export default function ContactDetail() {
   const { state } = useLocation();
-  const { firstName, lastName, email, gender } = state.contact;
+  const { firstname, lastname, email, gender, phonenumber, relationship } =
+    state.contact;
 
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
@@ -24,7 +25,7 @@ export default function ContactDetail() {
             <TableHead>
               <TableRow sx={{ bgcolor: "#a7f3d0" }}>
                 <TableCell sx={{ fontWeight: "900", fontSize: "17px" }}>
-                  The Details of {firstName} Contact!
+                  The Details of {firstname} Contact!
                 </TableCell>
                 <TableCell></TableCell>
               </TableRow>
@@ -41,7 +42,7 @@ export default function ContactDetail() {
                   sx={{ fontWeight: "600", fontSize: "16px" }}
                   align="left"
                 >
-                  {firstName}{" "}
+                  {firstname}{" "}
                 </TableCell>
               </TableRow>
               <TableRow sx={{ bgcolor: "#ecfdf5" }}>
@@ -55,7 +56,7 @@ export default function ContactDetail() {
                   sx={{ fontWeight: "600", fontSize: "16px" }}
                   align="left"
                 >
-                  {lastName}{" "}
+                  {lastname}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -83,7 +84,35 @@ export default function ContactDetail() {
                   sx={{ fontWeight: "600", fontSize: "16px" }}
                   align="left"
                 >
-                  {gender}{" "}
+                  {gender}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  align="left"
+                >
+                  Phone Number:
+                </TableCell>
+                <TableCell
+                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  align="left"
+                >
+                  {phonenumber}
+                </TableCell>
+              </TableRow>
+              <TableRow sx={{ bgcolor: "#ecfdf5" }}>
+                <TableCell
+                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  align="left"
+                >
+                  What's the relationship?
+                </TableCell>
+                <TableCell
+                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  align="left"
+                >
+                  {relationship}
                 </TableCell>
               </TableRow>
             </TableBody>
