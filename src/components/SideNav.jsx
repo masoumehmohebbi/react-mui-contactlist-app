@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { alpha } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -232,7 +232,9 @@ export default function SideNav() {
                     textAlign: "center",
                   }}
                 >
-                  <PersonAdd sx={{ color: "#166534", fontSize: "30px" }} />
+                  <Tooltip title="Add Contact">
+                    <PersonAdd sx={{ color: "#166534", fontSize: "30px" }} />
+                  </Tooltip>
                 </Link>
               </Typography>
             </Typography>
