@@ -16,8 +16,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
-import { alpha } from "@mui/material/styles";
 import { Tooltip, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
@@ -94,69 +92,15 @@ const Drawer = styled(MuiDrawer, {
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
-// Search Box
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "25ch",
-      },
-    },
-  },
-}));
-
-export default function SideNav({ allContacts, setContacts }) {
+export default function SideNav({
+  allContacts,
+  setContacts,
+  contacts,
+  filteredTerm,
+}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
-  const [searchTerm, setSearchTerm] = React.useState("");
-
-  const searchHandler = (e) => {
-    setSearchTerm(e.target.value);
-    if (e.target.value !== "") {
-      const filteredContacts = allContacts.filter((c) => {
-        return Object.values(c)
-          .join("")
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase());
-      });
-      setContacts(filteredContacts);
-    } else {
-      setContacts(allContacts);
-    }
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -192,23 +136,32 @@ export default function SideNav({ allContacts, setContacts }) {
               height: "40px",
             }}
           >
-            <Search
+            <Typography
               sx={{
                 display: "flex",
-                alignItems: "center",
-                color: "#f0fdf4",
+                fontWeight: "600",
+                textTransform: "uppercase",
               }}
             >
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                value={searchTerm}
-                onChange={searchHandler}
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+              There are generally
+              <Typography
+                sx={{
+                  marginX: "5px",
+                  width: "25px",
+                  height: "25px",
+                  bgcolor: "#6ee7b7",
+                  borderRadius: "50%",
+                  textAlign: "center",
+                }}
+              >
+                {contacts
+                  ? contacts.length
+                  : filteredTerm
+                  ? filteredTerm.length
+                  : "0"}
+              </Typography>
+              Contact!
+            </Typography>
 
             <Typography
               component="div"
@@ -297,13 +250,11 @@ export default function SideNav({ allContacts, setContacts }) {
               src="https://www.lastrada-doells.temporalweb.de/files/stradoell_theme/Daten/Schauspieler/lion_wasczyk/bilder_2020/Lion_neu_1.jpg"
             />
           </AvatarGroup>
-          {/* <Divider /> */}
         </DrawerHeader>
 
         <Divider sx={{ bgcolor: "#4ade80" }} />
         <List
           sx={{
-            // paddingTop: "10px",
             bgcolor: "#4ade80",
             height: "100%",
             borderRight: "2px solid #86efac",
