@@ -17,20 +17,23 @@ import {
   RestoreFromTrash,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import getContacts from "../services/getContactsService";
+import deleteContact from "../services/deleteContactsService";
 
-export default function Searchh({ filteredTerm, setFilteredTerm }) {
+export default function Searchh({
+  filteredTerm,
+  setFilteredTerm,
+  deleteContactHandler,
+}) {
   const navigate = useNavigate();
 
-  const deleteOneContactHandler = (contactId) => {
-    // try {
-    //   await deleteContact(contactId);
-    //   const filteredContacts = contacts.filter((c) => c.id !== contactId);
-    //   setContacts(filteredContacts);
-    // } catch (error) {}
+  const deleteOneContactHandler = async (contactId) => {
+    try {
+      await deleteContact(contactId);
+      const filteredContacts = filteredTerm.filter((c) => c.id !== contactId);
+      setFilteredTerm(filteredContacts);
+    } catch (error) {}
     // deleteOneContactHandler(contactId);
-    // deleteContactHandler(contactId);
-    console.log("delete");
+    deleteContactHandler(contactId);
   };
 
   return (
