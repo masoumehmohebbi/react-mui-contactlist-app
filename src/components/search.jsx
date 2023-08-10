@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, Tooltip } from "@mui/material";
-import SideNav from "../components/SideNav";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import {
@@ -32,10 +31,24 @@ export default function Searchh({
       const filteredContacts = filteredTerm.filter((c) => c.id !== contactId);
       setFilteredTerm(filteredContacts);
     } catch (error) {}
-    // deleteOneContactHandler(contactId);
     deleteContactHandler(contactId);
   };
-
+  if (filteredTerm.length === 0) {
+    return (
+      <Typography
+        sx={{
+          width: "100%",
+          marginTop: "6rem",
+          fontSize: "25px",
+          fontWeight: "600",
+          textAlign: "center",
+          textTransform: "capitalize",
+        }}
+      >
+        there is no contact founded!
+      </Typography>
+    );
+  }
   return (
     <Grid container spacing={2} sx={{ my: "30px" }}>
       {filteredTerm ? (
@@ -49,7 +62,6 @@ export default function Searchh({
             >
               <CardMedia
                 sx={{
-                  // height: 160,
                   height: 110,
                   backgroundPositionY: "1px",
                   width: "95px",
@@ -75,7 +87,7 @@ export default function Searchh({
                     component="span"
                     sx={{ color: "#65a30d", fontWeight: "600" }}
                   >
-                    {new Date().toLocaleString() + ""}
+                    {new Date().toLocaleDateString()}
                   </Typography>
                 </Typography>
                 <Typography
