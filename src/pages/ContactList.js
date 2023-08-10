@@ -29,6 +29,8 @@ export default function ContactList({
   setallContacts,
   deleteContactHandler,
 }) {
+  const [date, setDate] = React.useState(new Date().toLocaleString() + "");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -111,7 +113,8 @@ export default function ContactList({
                           component="span"
                           sx={{ color: "#65a30d", fontWeight: "600" }}
                         >
-                          {new Date().toLocaleString() + ""}
+                          {/* {new Date().toLocaleString() + ""} */}
+                          {new Date().toLocaleDateString()}
                         </Typography>
                       </Typography>
                       <Typography
