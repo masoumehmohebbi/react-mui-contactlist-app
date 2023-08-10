@@ -74,6 +74,7 @@ function App() {
                 setContacts={setContacts}
                 allContacts={allContacts}
                 setallContacts={setallContacts}
+                deleteContactHandler={deleteContactHandler}
               />
             }
           />
