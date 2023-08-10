@@ -61,6 +61,7 @@ const SearchContact = ({
   setContacts,
   allContacts,
   setallContacts,
+  deleteContactHandler,
 }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [filteredTerm, setFilteredTerm] = React.useState("");
@@ -122,6 +123,7 @@ const SearchContact = ({
               filteredTerm={filteredTerm}
               setFilteredTerm={setFilteredTerm}
               contacts={contacts}
+              deleteContactHandler={deleteContactHandler}
             />
           </Box>
         </Box>
