@@ -27,7 +27,7 @@ const Search = styled("div")(({ theme }) => ({
     // width: "auto",
     width: "40rem",
     height: "4rem",
-    marginTop: "1rem",
+    marginTop: "3rem",
   },
 }));
 
@@ -99,7 +99,7 @@ const SearchContact = ({
         {/* <ContactList contacts={filteredTerm} setContacts={setFilteredTerm} /> */}
 
         <Box sx={{ display: "flex" }}>
-          <SideNav />
+          <SideNav contacts={contacts} />
 
           <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Search
@@ -131,7 +131,7 @@ const SearchContact = ({
     );
   return (
     <Box sx={{ display: "flex" }}>
-      <SideNav />
+      <SideNav filteredTerm={filteredTerm} />
       <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Search
           sx={{
