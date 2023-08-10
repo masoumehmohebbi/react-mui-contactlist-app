@@ -137,9 +137,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SideNav() {
+export default function SideNav({ allContacts, setContacts }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const searchHandler = (e) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value !== "") {
+      const filteredContacts = allContacts.filter((c) => {
+        return Object.values(c)
+          .join("")
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase());
+      });
+      setContacts(filteredContacts);
+    } else {
+      setContacts(allContacts);
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -186,6 +203,8 @@ export default function SideNav() {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
+                value={searchTerm}
+                onChange={searchHandler}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
@@ -213,7 +232,6 @@ export default function SideNav() {
                 sx={{
                   bgcolor: "#6ee7b7",
                   borderRadius: "50%",
-                  // padding: "20px 6px",
                   width: "42px",
                   cursor: "pointer",
                   display: "flex",
@@ -285,12 +303,45 @@ export default function SideNav() {
         <Divider sx={{ bgcolor: "#4ade80" }} />
         <List
           sx={{
-            paddingTop: "30px",
+            // paddingTop: "10px",
             bgcolor: "#4ade80",
             height: "100%",
             borderRight: "2px solid #86efac",
           }}
         >
+          <Link to={"/search"}>
+            <ListItem disablePadding sx={{ display: "block" }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SearchIcon sx={{ fontSize: "32px", color: "#166534" }} />
+                </ListItemIcon>
+                <Typography
+                  sx={{
+                    opacity: open ? 1 : 0,
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    color: "#f0fdf4",
+                  }}
+                >
+                  Search Contact
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Divider />
+
           <Link to={"/"}>
             <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
@@ -318,13 +369,6 @@ export default function SideNav() {
                   }}
                 >
                   Contacts list
-                  {/* <ListItemText
-                    primary="Contacts list"
-                    sx={{
-                      opacity: open ? 1 : 0,
-                      color: "#f0fdf4",
-                    }}
-                  /> */}
                 </Typography>
               </ListItemButton>
             </ListItem>
@@ -358,10 +402,6 @@ export default function SideNav() {
                   }}
                 >
                   Add Contact
-                  {/* <ListItemText
-                    primary="Add Contact"
-                    sx={{ opacity: open ? 1 : 0, fontWeight: "600" }}
-                  /> */}
                 </Typography>
               </ListItemButton>
             </ListItem>

@@ -2,18 +2,21 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { PersonAdd } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
   const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
 
   return (
     <Box
       position="fixed"
       sx={{
         top: "auto",
+        zIndex: "80",
         bottom: 0,
         flexDirection: "column",
         alignItems: "center",
@@ -31,9 +34,21 @@ export default function Footer() {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction
+          onClick={() => navigate("/search")}
+          label="Search"
+          icon={<SearchIcon />}
+        />
+        <BottomNavigationAction
+          onClick={() => navigate("/add")}
+          label="Contact Add"
+          icon={<PersonAdd />}
+        />
+        <BottomNavigationAction
+          onClick={() => navigate("/")}
+          label="Contact List"
+          icon={<MenuIcon />}
+        />
       </BottomNavigation>
     </Box>
   );

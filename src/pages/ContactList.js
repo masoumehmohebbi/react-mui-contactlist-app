@@ -9,6 +9,7 @@ import SideNav from "../components/SideNav";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
   AccessTimeFilled,
+  Contacts,
   Edit,
   Female,
   Male,
@@ -16,36 +17,49 @@ import {
   RestoreFromTrash,
 } from "@mui/icons-material";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import getContacts from "../services/getContactsService";
 import deleteContact from "../services/deleteContactsService";
 import { useNavigate } from "react-router-dom";
 
-export default function ContactList() {
-  const [contacts, setContacts] = useState([]);
+export default function ContactList({
+  contacts,
+  setContacts,
+  allContacts,
+  setallContacts,
+  deleteContactHandler,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchContacts = async () => {
       const { data } = await getContacts();
       setContacts(data);
+
+      // setallContacts(data);
     };
     try {
       fetchContacts();
     } catch (error) {}
   }, []);
 
-  const deleteOneContactHandler = async (contactId) => {
-    try {
-      await deleteContact(contactId);
-      const filteredContacts = contacts.filter((c) => c.id !== contactId);
-      setContacts(filteredContacts);
-    } catch (error) {}
+  const deleteOneContactHandler = (contactId) => {
+    // try {
+    //   await deleteContact(contactId);
+    //   const filteredContacts = contacts.filter((c) => c.id !== contactId);
+    //   setContacts(filteredContacts);
+    // } catch (error) {}
+    // deleteOneContactHandler(contactId);
+    deleteContactHandler(contactId);
   };
 
   return (
     <Box sx={{ display: "flex" }}>
-      <SideNav />
+      <SideNav
+        allContacts={allContacts}
+        setContacts={setContacts}
+        contacts={contacts}
+      />
       <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Grid container spacing={2}>
           {contacts ? (

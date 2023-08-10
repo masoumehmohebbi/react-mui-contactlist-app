@@ -1,22 +1,13 @@
 {
   "contacts": [
     {
-      "firstname": "samira",
-      "lastname": "mohebb",
-      "phonenumber": "+09223232",
-      "email": "sami@gamil.com",
-      "gender": "female",
-      "relationship": "sister",
-      "id": 1
-    },
-    {
-      "firstname": "shayy",
-      "lastname": "ddd",
+      "firstname": "ffg",
+      "lastname": "c",
       "phonenumber": "+09394296023",
       "email": "masoumeh.mohebbi@gmail.com",
-      "gender": "male",
-      "relationship": "dddddddddddddddddddd",
-      "id": 3
+      "gender": "female",
+      "relationship": "cc",
+      "id": 10
     }
   ]
 }
