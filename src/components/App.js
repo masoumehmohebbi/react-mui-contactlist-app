@@ -10,6 +10,7 @@ import SearchContact from "../pages/SearchContact";
 import { useEffect, useState } from "react";
 import getContacts from "../services/getContactsService";
 import deleteContact from "../services/deleteContactsService";
+import supabase from "../supabase";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -17,10 +18,13 @@ function App() {
 
   useEffect(() => {
     const fetchContacts = async () => {
-      const { data } = await getContacts();
-      setContacts(data);
+      // const { data } = await getContacts();
+      let { data: contact, error } = await supabase
+        .from("contactlist")
+        .select("*");
+      setContacts(contact);
 
-      setallContacts(data);
+      setallContacts(contact);
     };
     try {
       fetchContacts();
@@ -29,7 +33,12 @@ function App() {
 
   const deleteContactHandler = async (contactId) => {
     try {
-      await deleteContact(contactId);
+      const { error } = await supabase
+        .from("contactlist")
+        .delete()
+        .eq("id", contactId);
+
+      // await deleteContact(contactId);
       const filteredContacts = contacts.filter((c) => c.id !== contactId);
       setContacts(filteredContacts);
     } catch (error) {}
