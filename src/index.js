@@ -11,12 +11,6 @@ const theme = createTheme({
     },
   },
 });
-const jsonServer = require("json-server");
-const db = require("../server-api/db.json");
-
-jsonServer.createServer(db).listen(3031, () => {
-  console.log("JSON server started on port 3031");
-});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
