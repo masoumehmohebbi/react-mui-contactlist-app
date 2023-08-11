@@ -12,6 +12,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import addOneContact from "../services/addContactService";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ValidationTextField = styled(TextField)({
   backgroundColor: "#dcfce7",
@@ -64,7 +65,23 @@ const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: "#22c55e",
   },
 }));
-export default function AddContact() {
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+
+  customClass: {
+    popup: "popup-class",
+  },
+
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
+export default function AddContact({ contacts }) {
   const navigate = useNavigate();
 
   const [value, setValue] = useState("");
@@ -96,7 +113,11 @@ export default function AddContact() {
       !contact.email ||
       !contact.relationship
     ) {
-      alert("All Filds are mandatory! ");
+      // alert("All Filds are mandatory! ");
+      Toast.fire({
+        icon: "error",
+        title: "All Filds are mandatory!",
+      });
       return;
     }
     try {
@@ -111,12 +132,16 @@ export default function AddContact() {
       });
       setValue("");
       navigate("/");
+      Toast.fire({
+        icon: "success",
+        title: "New Contact Added Successfully!",
+      });
     } catch (error) {}
   };
 
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
-      <SideNav />
+      <SideNav contacts={contacts} />
       <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <FormControl
           sx={{
@@ -134,14 +159,12 @@ export default function AddContact() {
             value={contact.firstname}
             onChange={changeHandler}
           />
-
           <ValidationTextField
             label="Last Name"
             name="lastname"
             value={contact.lastname}
             onChange={changeHandler}
           />
-
           <StyledInputBase
             // name="phonenumber"
             label="Phone Number"
@@ -193,7 +216,6 @@ export default function AddContact() {
               </Typography>
             </RadioGroup>
           </Typography>
-
           <ValidationTextField
             name="relationship"
             value={contact.relationship}
