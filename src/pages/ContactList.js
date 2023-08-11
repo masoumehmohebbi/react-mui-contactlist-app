@@ -9,7 +9,6 @@ import SideNav from "../components/SideNav";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
   AccessTimeFilled,
-  Contacts,
   Edit,
   Female,
   Male,
@@ -19,7 +18,6 @@ import {
 
 import { useEffect } from "react";
 import getContacts from "../services/getContactsService";
-import deleteContact from "../services/deleteContactsService";
 import { useNavigate } from "react-router-dom";
 
 export default function ContactList({
@@ -29,8 +27,7 @@ export default function ContactList({
   setallContacts,
   deleteContactHandler,
 }) {
-  const [date, setDate] = React.useState(new Date().toLocaleString() + "");
-
+  // const [date, setDate] = React.useState(new Date().toLocaleString() + "");
   const navigate = useNavigate();
 
   useEffect(() => {
