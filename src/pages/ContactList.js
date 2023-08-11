@@ -27,10 +27,14 @@ export default function ContactList({
   setallContacts,
   deleteContactHandler,
 }) {
-  // const [date, setDate] = React.useState(new Date().toLocaleString() + "");
+  const [date, setDate] = React.useState(new Date());
+  const ref = React.useRef(new Date());
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    ref.current = new Date();
+
     const fetchContacts = async () => {
       const { data } = await getContacts();
       setContacts(data);
@@ -43,12 +47,6 @@ export default function ContactList({
   }, []);
 
   const deleteOneContactHandler = (contactId) => {
-    // try {
-    //   await deleteContact(contactId);
-    //   const filteredContacts = contacts.filter((c) => c.id !== contactId);
-    //   setContacts(filteredContacts);
-    // } catch (error) {}
-    // deleteOneContactHandler(contactId);
     deleteContactHandler(contactId);
   };
 
@@ -84,7 +82,6 @@ export default function ContactList({
                   >
                     <CardMedia
                       sx={{
-                        // height: 160,
                         height: 110,
                         backgroundPositionY: "1px",
                         width: "95px",
@@ -111,7 +108,8 @@ export default function ContactList({
                           sx={{ color: "#65a30d", fontWeight: "600" }}
                         >
                           {/* {new Date().toLocaleString() + ""} */}
-                          {new Date().toLocaleDateString()}
+                          {/* {new Date().toLocaleDateString()} */}
+                          {date.toLocaleString() + ""}
                         </Typography>
                       </Typography>
                       <Typography
