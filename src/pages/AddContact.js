@@ -113,7 +113,6 @@ export default function AddContact({ contacts }) {
       !contact.email ||
       !contact.relationship
     ) {
-      // alert("All Filds are mandatory! ");
       Toast.fire({
         icon: "error",
         title: "All Filds are mandatory!",
@@ -166,7 +165,6 @@ export default function AddContact({ contacts }) {
             onChange={changeHandler}
           />
           <StyledInputBase
-            // name="phonenumber"
             label="Phone Number"
             value={value}
             onChange={handleChange}
