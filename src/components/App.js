@@ -63,7 +63,7 @@ function App() {
               />
             }
           />
-          <Route path="/add" element={<AddContact />} />
+          <Route path="/add" element={<AddContact contacts={contacts} />} />
           <Route path="/user/:id" element={<ContactDetail />} />
           <Route path="/edit/:id" element={<EditContact />} />
           <Route
