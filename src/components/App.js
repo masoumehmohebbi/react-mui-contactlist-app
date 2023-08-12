@@ -11,19 +11,20 @@ import { useEffect, useState } from "react";
 import getContacts from "../services/getContactsService";
 import deleteContact from "../services/deleteContactsService";
 import supabase from "../supabase";
+// import { useRealtime } from "react-supabase";
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [allContacts, setallContacts] = useState([]);
 
+  // const [{ data, error, fetching }, reexecute] = useRealtime("contactlist");
+
   useEffect(() => {
     const fetchContacts = async () => {
-      // const { data } = await getContacts();
       let { data: contact, error } = await supabase
         .from("contactlist")
         .select("*");
       setContacts(contact);
-
       setallContacts(contact);
     };
     try {
