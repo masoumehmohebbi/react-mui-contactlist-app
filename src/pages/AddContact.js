@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import addOneContact from "../services/addContactService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import supabase from "../supabase";
 
 const ValidationTextField = styled(TextField)({
   backgroundColor: "#dcfce7",
@@ -120,7 +121,22 @@ export default function AddContact({ contacts }) {
       return;
     }
     try {
-      await addOneContact(contact);
+      // await addOneContact(contact);
+
+      const { data, error } = await supabase
+        .from("contactlist")
+        .insert([
+          {
+            firstname: contact.firstname,
+            lastname: contact.lastname,
+            phonenumber: contact.phonenumber,
+            email: contact.email,
+            gender: contact.gender,
+            relationship: contact.relationship,
+          },
+        ])
+        .select();
+
       setContact({
         firstname: "",
         lastname: "",
