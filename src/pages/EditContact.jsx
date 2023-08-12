@@ -11,8 +11,8 @@ import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import getOneContact from "../services/getOneContact";
-import updateContact from "../services/updateContact";
+import supabase from "../supabase";
+import Swal from "sweetalert2";
 
 const ValidationTextField = styled(TextField)({
   backgroundColor: "#dcfce7",
@@ -66,6 +66,23 @@ const ColorButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+
+  customClass: {
+    popup: "popup-class",
+  },
+
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
+
 export default function EditContact() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -99,11 +116,50 @@ export default function EditContact() {
       !contact.email ||
       !contact.relationship
     ) {
-      alert("All Filds are mandatory! ");
+      Toast.fire({
+        icon: "error",
+        title: "All Filds are mandatory!",
+      });
       return;
     }
     try {
-      await updateContact(id, contact);
+      // await updateContact(id, contact);
+
+      // const { data, error } = await supabase
+      //   .from("contactlist")
+      //   // .select("*")
+      //   // // .filter("id", "eq", id)
+      //   .update({
+      //     firstname: contact.firstname,
+      //   })
+      //   .eq("id", id)
+      //   .select();
+
+      // if (error) {
+      //   console.log(error);
+      // } else {
+      //   console.log(data);
+      // }
+      const { data, error } = await supabase
+        .from("contactlist")
+        .update({ firstname: contact.firstname })
+        .eq("id", id);
+
+      if (error) {
+        console.log(error);
+      } else {
+        const { data, error } = await supabase
+          .from("contactlist")
+          .select("*")
+          .eq("id", id);
+
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(data);
+        }
+      }
+
       setContact({
         firstname: "",
         lastname: "",
@@ -120,16 +176,25 @@ export default function EditContact() {
   React.useEffect(() => {
     const localFetch = async () => {
       try {
-        const { data } = await getOneContact(id);
-        setContact({
-          firstname: data.firstname,
-          lastname: data.lastname,
-          phonenumber: data.phonenumber,
-          email: data.email,
-          gender: data.gender,
-          relationship: data.relationship,
-        });
-        setValue(data.phonenumber);
+        // const { data } = await getOneContact(id);
+        const { data, error } = await supabase
+          .from("contactlist")
+          .select("*")
+          .filter("id", "eq", id);
+        if (error) {
+          console.log(error);
+        } else {
+          setContact({
+            firstname: data[0].firstname,
+            lastname: data[0].lastname,
+            phonenumber: data[0].phonenumber,
+            email: data[0].email,
+            gender: data[0].gender,
+            relationship: data[0].relationship,
+          });
+          let num = data[0].phonenumber.toString();
+          setValue(num);
+        }
       } catch (error) {}
     };
     localFetch();
