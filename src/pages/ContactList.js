@@ -30,7 +30,6 @@ export default function ContactList({
 }) {
   const [date, setDate] = React.useState(new Date());
   const ref = React.useRef(new Date());
-  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -39,10 +38,9 @@ export default function ContactList({
 
     const fetchContacts = async () => {
       // const { data } = await getContacts();
-      let { data: contact, error } = await supabase
-        .from("contactlist")
-        .select("*");
-      setContacts(contact);
+      let { data, error } = await supabase.from("contactlist").select("*");
+      setContacts(data);
+      console.log(data);
     };
 
     try {
@@ -51,9 +49,7 @@ export default function ContactList({
   }, []);
 
   const deleteOneContactHandler = (contactId) => {
-    // setLoading(true);
     deleteContactHandler(contactId);
-    // setLoading(false);
   };
 
   return (
@@ -210,7 +206,6 @@ export default function ContactList({
 
                         <Tooltip
                           title="Delete"
-                          isLoading={loading}
                           onClick={() => deleteOneContactHandler(contact.id)}
                         >
                           <RestoreFromTrash
