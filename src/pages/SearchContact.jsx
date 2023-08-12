@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SideNav from "../components/SideNav";
 import { InputBase, Typography } from "@mui/material";
 import Searchh from "../components/search";
-import getContacts from "../services/getContactsService";
+import supabase from "../supabase";
 
 // Search Box
 const Search = styled("div")(({ theme }) => ({
@@ -83,10 +83,10 @@ const SearchContact = ({
   };
   React.useEffect(() => {
     const fetchContacts = async () => {
-      const { data } = await getContacts();
+      // const { data } = await getContacts();
+      // setFilteredTerm(data);
+      let { data, error } = await supabase.from("contactlist").select("*");
       setFilteredTerm(data);
-
-      // setallContacts(data);
     };
     try {
       fetchContacts();
