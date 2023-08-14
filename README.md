@@ -20,6 +20,6 @@ React ContactList App, based on Material-UI library
   <li>ReactJs</li>
   <li>Json db</li>
   <li>Axios Library</li>
-  <li>Supabase</li>
-  <li>SwweitAlert2</li>
+  <li>Supabase database</li>
+  <li>SweeitAlert2</li>
 </ul>
