@@ -83,18 +83,14 @@ export default function Searchh({
                   <AccessTimeFilled
                     sx={{ color: "#84cc16", fontSize: "18px" }}
                   />
-                  <Typography
-                    component="span"
-                    sx={{ color: "#65a30d", fontWeight: "600" }}
-                  >
-                    {new Date().toLocaleDateString()}
+                  <Typography sx={{ color: "#65a30d", fontWeight: "600" }}>
+                    {contact.time}
                   </Typography>
                 </Typography>
                 <Typography
                   sx={{ display: "flex", gap: "9px" }}
                   gutterBottom
                   variant="h5"
-                  component="div"
                 >
                   <Typography
                     component="span"
@@ -103,7 +99,6 @@ export default function Searchh({
                     {contact.firstname}
                   </Typography>
                   <Typography
-                    component="span"
                     sx={{ fontWeight: "800", mt: "11px", color: "#14532d" }}
                   >
                     {contact.lastname}
@@ -119,7 +114,7 @@ export default function Searchh({
                   gap: "1px",
                 }}
               >
-                <Typography component="div">
+                <Typography>
                   {contact.gender === "female" ? (
                     <Tooltip title="Female">
                       <Female sx={{ color: "#dc2626", fontSize: "24px" }} />
@@ -191,7 +186,7 @@ export default function Searchh({
           </Grid>
         ))
       ) : (
-        <Typography sx={{ width: "100%", bgcolor: "red" }} component="span">
+        <Typography sx={{ width: "100%", bgcolor: "red" }}>
           No Contacts Yet!
         </Typography>
       )}
