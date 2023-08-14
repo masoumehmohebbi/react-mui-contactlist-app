@@ -21,7 +21,7 @@ import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { PersonAdd } from "@mui/icons-material";
-
+import { motion } from "framer-motion";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -93,12 +93,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function SideNav({
-  allContacts,
-  setContacts,
-  contacts,
-  filteredTerm,
-}) {
+export default function SideNav({ contacts, filteredTerm }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -131,27 +126,33 @@ export default function SideNav({
           <Box
             sx={{
               display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
               width: "100%",
-              height: "40px",
+              paddingY: "10px",
+              alignItems: { sm: "center" },
             }}
           >
             <Typography
               sx={{
-                display: "flex",
+                display: { xs: "none", sm: "flex" },
                 fontWeight: "600",
                 textTransform: "uppercase",
+                color: "#1e293b",
+                textShadow: "1px 2px 1px #6ee7b7",
               }}
             >
-              There are generally
+              There are
               <Typography
                 sx={{
                   marginX: "5px",
-                  width: "25px",
-                  height: "25px",
+                  width: "21px",
+                  height: "21px",
                   bgcolor: "#6ee7b7",
                   borderRadius: "50%",
-                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 {contacts
@@ -162,13 +163,12 @@ export default function SideNav({
               </Typography>
               Contact!
             </Typography>
-
+            {/* first row */}
             <Typography
-              component="div"
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                width: { xs: "58%", md: "59%", lg: "62%" },
+                width: { xs: "100%", sm: "59%", md: "59%", lg: "62%" },
               }}
             >
               <Typography
@@ -176,38 +176,84 @@ export default function SideNav({
                   fontSize: { xs: "25px", lg: "28px" },
                   textTransform: "uppercase",
                   fontWeight: "600",
-                  color: "#14532d",
+                  color: "#1e293b",
+                  textShadow: "1px 2px 1px #6ee7b7",
                 }}
               >
                 Contact list
               </Typography>
-              <Typography
-                sx={{
-                  bgcolor: "#6ee7b7",
-                  borderRadius: "50%",
-                  width: "42px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
+              <motion.span
+                whileHover={{
+                  scale: 1.1,
+                  originX: 0,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: "300",
                 }}
               >
-                <Link
-                  to={"/add"}
+                <Typography
                   sx={{
-                    height: "41px",
+                    bgcolor: "#4ade80",
+                    borderRadius: "50%",
+                    width: "42px",
+                    height: "40px",
+                    cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     textAlign: "center",
                   }}
                 >
-                  <Tooltip title="Add Contact">
-                    <PersonAdd sx={{ color: "#166534", fontSize: "30px" }} />
-                  </Tooltip>
-                </Link>
+                  <Link
+                    to={"/add"}
+                    sx={{
+                      height: "41px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Tooltip title="Add Contact">
+                      <PersonAdd sx={{ color: "#166534", fontSize: "30px" }} />
+                    </Tooltip>
+                  </Link>
+                </Typography>
+              </motion.span>
+            </Typography>
+            {/* second row */}
+            <Typography
+              sx={{
+                display: { xs: "flex", sm: "none" },
+                fontWeight: "600",
+                textTransform: "uppercase",
+                paddingTop: "16px",
+                color: "#1e293b",
+                textShadow: "1px 3px 2px #6ee7b7",
+              }}
+            >
+              There are
+              <Typography
+                sx={{
+                  marginX: "5px",
+                  width: "22px",
+                  height: "22px",
+                  bgcolor: "#6ee7b7",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // no
+                }}
+              >
+                {contacts
+                  ? contacts.length
+                  : filteredTerm
+                  ? filteredTerm.length
+                  : "0"}
               </Typography>
+              Contact!
             </Typography>
           </Box>
         </Toolbar>
@@ -278,16 +324,27 @@ export default function SideNav({
                 >
                   <SearchIcon sx={{ fontSize: "32px", color: "#166534" }} />
                 </ListItemIcon>
-                <Typography
-                  sx={{
-                    opacity: open ? 1 : 0,
-                    fontWeight: "600",
-                    fontSize: "16px",
-                    color: "#f0fdf4",
+                <motion.span
+                  whileHover={{
+                    scale: 1.1,
+                    originX: 0,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: "300",
                   }}
                 >
-                  Search Contact
-                </Typography>
+                  <Typography
+                    sx={{
+                      opacity: open ? 1 : 0,
+                      fontWeight: "600",
+                      fontSize: "16px",
+                      color: "#f0fdf4",
+                    }}
+                  >
+                    Search Contact
+                  </Typography>
+                </motion.span>
               </ListItemButton>
             </ListItem>
           </Link>
@@ -311,16 +368,27 @@ export default function SideNav({
                 >
                   <AssignmentIcon sx={{ fontSize: "32px", color: "#166534" }} />
                 </ListItemIcon>
-                <Typography
-                  sx={{
-                    opacity: open ? 1 : 0,
-                    color: "#f0fdf4",
-                    fontSize: "16px",
-                    fontWeight: "600",
+                <motion.span
+                  whileHover={{
+                    scale: 1.1,
+                    originX: 0,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: "300",
                   }}
                 >
-                  Contacts list
-                </Typography>
+                  <Typography
+                    sx={{
+                      opacity: open ? 1 : 0,
+                      color: "#f0fdf4",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Contacts list
+                  </Typography>
+                </motion.span>
               </ListItemButton>
             </ListItem>
           </Link>
@@ -344,16 +412,27 @@ export default function SideNav({
                   {/* <InboxIcon sx={{ fontSize: "32px", color: "#166534" }} /> */}
                   <PersonAdd sx={{ fontSize: "32px", color: "#166534" }} />
                 </ListItemIcon>
-                <Typography
-                  sx={{
-                    opacity: open ? 1 : 0,
-                    fontWeight: "600",
-                    fontSize: "16px",
-                    color: "#f0fdf4",
+                <motion.span
+                  whileHover={{
+                    scale: 1.1,
+                    originX: 0,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: "300",
                   }}
                 >
-                  Add Contact
-                </Typography>
+                  <Typography
+                    sx={{
+                      opacity: open ? 1 : 0,
+                      fontWeight: "600",
+                      fontSize: "16px",
+                      color: "#f0fdf4",
+                    }}
+                  >
+                    Add Contact
+                  </Typography>
+                </motion.span>
               </ListItemButton>
             </ListItem>
           </Link>
