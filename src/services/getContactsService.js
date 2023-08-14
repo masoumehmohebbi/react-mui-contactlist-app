@@ -1,7 +1,7 @@
-import http from "./httpService";
+import supabase from "../supabase";
 
 const getContacts = () => {
-  return http.get("/contacts");
+  return supabase.from("contactlist").select("*");
 };
 
 export default getContacts;
