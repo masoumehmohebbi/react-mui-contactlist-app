@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import SideNav from "../components/SideNav";
 import { InputBase, Typography } from "@mui/material";
-import Searchh from "../components/search";
 import getContacts from "../services/getContactsService";
+import SearchResult from "../components/search";
 
 // Search Box
 const Search = styled("div")(({ theme }) => ({
@@ -103,7 +103,7 @@ const SearchContact = ({ contacts, allContacts, deleteContactHandler }) => {
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
-            <Searchh
+            <SearchResult
               filteredTerm={filteredTerm}
               setFilteredTerm={setFilteredTerm}
               contacts={contacts}
