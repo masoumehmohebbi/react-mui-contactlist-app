@@ -170,10 +170,14 @@ export default function EditContact() {
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
       <SideNav />
-      <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        my={7}
+        component="main"
+        sx={{ flexGrow: 1, p: 3, marginY: { xs: "100px", sm: "65px" } }}
+      >
         <FormControl
           sx={{
-            width: "50%",
+            width: { xs: "100%", sm: "50%" },
             display: "flex",
             flexDirection: "column",
             marginX: "auto",
