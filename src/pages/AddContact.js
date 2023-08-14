@@ -13,7 +13,6 @@ import Button from "@mui/material/Button";
 import addOneContact from "../services/addContactService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import supabase from "../supabase";
 
 const ValidationTextField = styled(TextField)({
   backgroundColor: "#dcfce7",
@@ -36,7 +35,7 @@ const ValidationTextField = styled(TextField)({
     padding: "4px !important",
   },
 });
-const StyledInputBase = styled(MuiTelInput)(({ theme }) => ({
+const StyledInputBase = styled(MuiTelInput)(() => ({
   backgroundColor: "#dcfce7",
 
   "& input:valid + fieldset": {
@@ -53,7 +52,7 @@ const StyledInputBase = styled(MuiTelInput)(({ theme }) => ({
     padding: "4px !important",
   },
 }));
-const ColorButton = styled(Button)(({ theme }) => ({
+const ColorButton = styled(Button)(() => ({
   backgroundColor: "#4ade80 ",
   color: "#052e16",
   padding: "12px 5px",
@@ -82,8 +81,24 @@ const Toast = Swal.mixin({
     toast.addEventListener("mouseleave", Swal.resumeTimer);
   },
 });
+
 export default function AddContact({ contacts }) {
   const navigate = useNavigate();
+
+  localStorage.clear();
+  const [time] = useState(localStorage.getItem("time") || Date.now());
+  const iranDate = new Date(time);
+  const date = iranDate.toLocaleString("en-US", { timeZone: "Asia/Tehran" });
+
+  const clock = iranDate.toLocaleString("default", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem("time", time);
+  }, [time]);
 
   const [value, setValue] = useState("");
   const [contact, setContact] = useState({
@@ -93,6 +108,8 @@ export default function AddContact({ contacts }) {
     email: "",
     gender: "female",
     relationship: "",
+    time: clock,
+    fullTime: date,
   });
 
   const handleChange = (newValue) => {
@@ -121,21 +138,16 @@ export default function AddContact({ contacts }) {
       return;
     }
     try {
-      // await addOneContact(contact);
-
-      const { data, error } = await supabase
-        .from("contactlist")
-        .insert([
-          {
-            firstname: contact.firstname,
-            lastname: contact.lastname,
-            phonenumber: contact.phonenumber,
-            email: contact.email,
-            gender: contact.gender,
-            relationship: contact.relationship,
-          },
-        ])
-        .select();
+      await addOneContact({
+        firstname: contact.firstname,
+        lastname: contact.lastname,
+        phonenumber: contact.phonenumber,
+        email: contact.email,
+        gender: contact.gender,
+        relationship: contact.relationship,
+        time: contact.time,
+        fullTime: contact.fullTime,
+      });
 
       setContact({
         firstname: "",
@@ -144,6 +156,8 @@ export default function AddContact({ contacts }) {
         email: "",
         gender: "female",
         relationship: "",
+        time: "",
+        fullTime: "",
       });
       setValue("");
       navigate("/");
@@ -151,7 +165,9 @@ export default function AddContact({ contacts }) {
         icon: "success",
         title: "New Contact Added Successfully!",
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
