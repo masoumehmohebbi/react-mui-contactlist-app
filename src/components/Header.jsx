@@ -15,7 +15,7 @@ const Header = () => {
         }}
       >
         <Box
-          component="span"
+          // component="span"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -39,7 +39,6 @@ const Header = () => {
 
           <TextField
             label="type here to search"
-            // variant="filled"
             InputProps={{
               style: { borderRadius: "50px" },
             }}
