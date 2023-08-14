@@ -37,17 +37,17 @@ export default function Footer() {
         <BottomNavigationAction
           onClick={() => navigate("/search")}
           label="Search"
-          icon={<SearchIcon />}
+          icon={<SearchIcon sx={{ marginBottom: "6px" }} />}
         />
         <BottomNavigationAction
           onClick={() => navigate("/add")}
           label="Contact Add"
-          icon={<PersonAdd />}
+          icon={<PersonAdd sx={{ marginBottom: "6px" }} />}
         />
         <BottomNavigationAction
           onClick={() => navigate("/")}
           label="Contact List"
-          icon={<MenuIcon />}
+          icon={<MenuIcon sx={{ marginBottom: "6px" }} />}
         />
       </BottomNavigation>
     </Box>
