@@ -85,7 +85,11 @@ const SearchContact = ({ contacts, allContacts, deleteContactHandler }) => {
         <Box sx={{ display: "flex" }}>
           <SideNav contacts={contacts} />
 
-          <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Box
+            my={7}
+            component="main"
+            sx={{ flexGrow: 1, p: 3, marginY: { xs: "100px", sm: "65px" } }}
+          >
             <Search
               sx={{
                 display: "flex",
@@ -116,7 +120,11 @@ const SearchContact = ({ contacts, allContacts, deleteContactHandler }) => {
   return (
     <Box sx={{ display: "flex", marginY: { xs: "100px", sm: "65px" } }}>
       <SideNav filteredTerm={filteredTerm} />
-      <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        my={7}
+        component="main"
+        sx={{ flexGrow: 1, p: 3, marginY: { xs: "100px", sm: "65px" } }}
+      >
         <Search
           sx={{
             display: "flex",
