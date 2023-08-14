@@ -25,12 +25,33 @@ export default function ContactDetail() {
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
       <SideNav />
-      <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <TableContainer component={Paper}>
+      <Box
+        my={7}
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          marginY: { xs: "100px", sm: "65px" },
+        }}
+      >
+        <TableContainer
+          component={Paper}
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            wordBreak: "break-word",
+          }}
+        >
           <Table>
             <TableHead>
               <TableRow sx={{ bgcolor: "#a7f3d0" }}>
-                <TableCell sx={{ fontWeight: "900", fontSize: "17px" }}>
+                <TableCell
+                  sx={{
+                    fontWeight: "900",
+                    fontSize: { xs: "13px", sm: "17px" },
+                  }}
+                >
                   The Details of {firstname} Contact!
                 </TableCell>
                 <TableCell></TableCell>
@@ -39,27 +60,44 @@ export default function ContactDetail() {
             <TableBody>
               <TableRow>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   First Name:
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {firstname}{" "}
                 </TableCell>
               </TableRow>
-              <TableRow sx={{ bgcolor: "#ecfdf5" }}>
+              <TableRow
+                sx={{
+                  bgcolor: "#ecfdf5",
+                  fontSize: { xs: "13px", sm: "16px" },
+                }}
+              >
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   Last Name:
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {lastname}
@@ -67,13 +105,19 @@ export default function ContactDetail() {
               </TableRow>
               <TableRow>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   Email:
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {email}
@@ -81,13 +125,19 @@ export default function ContactDetail() {
               </TableRow>
               <TableRow sx={{ bgcolor: "#ecfdf5" }}>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   The Gender:
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {gender}
@@ -95,13 +145,19 @@ export default function ContactDetail() {
               </TableRow>
               <TableRow>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   Phone Number:
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {phonenumber}
@@ -109,13 +165,19 @@ export default function ContactDetail() {
               </TableRow>
               <TableRow sx={{ bgcolor: "#ecfdf5" }}>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   What's the relationship?
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {relationship}
@@ -123,13 +185,19 @@ export default function ContactDetail() {
               </TableRow>
               <TableRow>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   When Added?
                 </TableCell>
                 <TableCell
-                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: { xs: "13px", sm: "16px" },
+                  }}
                   align="left"
                 >
                   {fullTime}
