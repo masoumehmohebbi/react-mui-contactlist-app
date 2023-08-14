@@ -12,11 +12,11 @@ import getContacts from "../services/getContactsService";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: "30px",
-  backgroundColor: "#a3e635",
-  border: "1px solid #84cc16",
+  backgroundColor: "#4ade80",
+  border: "1px solid #16a34a",
+  transition: "all 0.5s",
   "&:hover": {
-    backgroundColor: "#a3e635",
-    border: "2px solid #84cc16",
+    border: "2px solid #16a34a",
   },
   marginLeft: 0,
   [theme.breakpoints.up("sm")]: {
@@ -45,10 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "25ch",
-      },
+      width: "25ch",
     },
   },
 }));
