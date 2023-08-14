@@ -18,7 +18,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import deleteContact from "../services/deleteContactsService";
 
-export default function Searchh({
+export default function SearchResult({
   filteredTerm,
   setFilteredTerm,
   deleteContactHandler,
