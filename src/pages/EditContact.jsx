@@ -13,6 +13,8 @@ import Button from "@mui/material/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import supabase from "../supabase";
 import Swal from "sweetalert2";
+import getOneContact from "../services/getOneContact";
+import updateContact from "../services/updateContact";
 
 const ValidationTextField = styled(TextField)({
   backgroundColor: "#dcfce7",
@@ -88,6 +90,7 @@ export default function EditContact() {
   const { id } = useParams();
 
   const [value, setValue] = useState("");
+
   const [contact, setContact] = useState({
     firstname: "",
     lastname: "",
@@ -123,42 +126,8 @@ export default function EditContact() {
       return;
     }
     try {
-      // await updateContact(id, contact);
-
-      // const { data, error } = await supabase
-      //   .from("contactlist")
-      //   // .select("*")
-      //   // // .filter("id", "eq", id)
-      //   .update({
-      //     firstname: contact.firstname,
-      //   })
-      //   .eq("id", id)
-      //   .select();
-
-      // if (error) {
-      //   console.log(error);
-      // } else {
-      //   console.log(data);
-      // }
-      const { data, error } = await supabase
-        .from("contactlist")
-        .update({ firstname: contact.firstname })
-        .eq("id", id);
-
-      if (error) {
-        console.log(error);
-      } else {
-        const { data, error } = await supabase
-          .from("contactlist")
-          .select("*")
-          .eq("id", id);
-
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(data);
-        }
-      }
+      await updateContact(id, contact);
+      supabase.from("contactlist").select("*").eq("id", id);
 
       setContact({
         firstname: "",
@@ -170,34 +139,32 @@ export default function EditContact() {
       });
       setValue("");
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   React.useEffect(() => {
     const localFetch = async () => {
       try {
-        // const { data } = await getOneContact(id);
-        const { data, error } = await supabase
-          .from("contactlist")
-          .select("*")
-          .filter("id", "eq", id);
-        if (error) {
-          console.log(error);
-        } else {
-          setContact({
-            firstname: data[0].firstname,
-            lastname: data[0].lastname,
-            phonenumber: data[0].phonenumber,
-            email: data[0].email,
-            gender: data[0].gender,
-            relationship: data[0].relationship,
-          });
-          let num = data[0].phonenumber.toString();
-          setValue(num);
-        }
-      } catch (error) {}
+        const { data } = await getOneContact(id);
+
+        setContact({
+          firstname: data[0].firstname,
+          lastname: data[0].lastname,
+          phonenumber: data[0].phonenumber,
+          email: data[0].email,
+          gender: data[0].gender,
+          relationship: data[0].relationship,
+        });
+        let num = data[0].phonenumber.toString();
+        setValue(num);
+      } catch (error) {
+        console.log(error);
+      }
     };
     localFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
