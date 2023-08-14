@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import SideNav from "../components/SideNav";
 import { InputBase, Typography } from "@mui/material";
 import Searchh from "../components/search";
-import supabase from "../supabase";
+import getContacts from "../services/getContactsService";
 
 // Search Box
 const Search = styled("div")(({ theme }) => ({
@@ -19,12 +19,9 @@ const Search = styled("div")(({ theme }) => ({
     border: "2px solid #84cc16",
   },
   marginLeft: 0,
-  //   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    // marginLeft: theme.spacing(1),
     marginLeft: "auto",
     marginRight: "auto",
-    // width: "auto",
     width: "40rem",
     height: "4rem",
     marginTop: "3rem",
@@ -56,13 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchContact = ({
-  contacts,
-  setContacts,
-  allContacts,
-  setallContacts,
-  deleteContactHandler,
-}) => {
+const SearchContact = ({ contacts, allContacts, deleteContactHandler }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [filteredTerm, setFilteredTerm] = React.useState("");
 
@@ -83,9 +74,7 @@ const SearchContact = ({
   };
   React.useEffect(() => {
     const fetchContacts = async () => {
-      // const { data } = await getContacts();
-      // setFilteredTerm(data);
-      let { data, error } = await supabase.from("contactlist").select("*");
+      const { data } = await getContacts();
       setFilteredTerm(data);
     };
     try {
@@ -96,8 +85,6 @@ const SearchContact = ({
   if (searchTerm !== "")
     return (
       <>
-        {/* <ContactList contacts={filteredTerm} setContacts={setFilteredTerm} /> */}
-
         <Box sx={{ display: "flex" }}>
           <SideNav contacts={contacts} />
 
@@ -130,7 +117,7 @@ const SearchContact = ({
       </>
     );
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", marginY: { xs: "100px", sm: "65px" } }}>
       <SideNav filteredTerm={filteredTerm} />
       <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Search
@@ -154,7 +141,7 @@ const SearchContact = ({
           sx={{
             width: "100%",
             marginTop: "6rem",
-            fontSize: "25px",
+            fontSize: { xs: "16px", sm: "25px" },
             fontWeight: "600",
             textAlign: "center",
             textTransform: "capitalize",
