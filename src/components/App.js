@@ -8,24 +8,36 @@ import ContactDetail from "../pages/ContactDetail";
 import EditContact from "../pages/EditContact";
 import SearchContact from "../pages/SearchContact";
 import { useEffect, useState } from "react";
-import getContacts from "../services/getContactsService";
+import Swal from "sweetalert2";
 import deleteContact from "../services/deleteContactsService";
-import supabase from "../supabase";
-// import { useRealtime } from "react-supabase";
+import getContacts from "../services/getContactsService";
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+
+  customClass: {
+    popup: "popup-class",
+  },
+
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [allContacts, setallContacts] = useState([]);
 
-  // const [{ data, error, fetching }, reexecute] = useRealtime("contactlist");
-
   useEffect(() => {
     const fetchContacts = async () => {
-      let { data: contact, error } = await supabase
-        .from("contactlist")
-        .select("*");
-      setContacts(contact);
-      setallContacts(contact);
+      const { data } = await getContacts();
+      setContacts(data);
+      setallContacts(data);
     };
     try {
       fetchContacts();
@@ -34,15 +46,17 @@ function App() {
 
   const deleteContactHandler = async (contactId) => {
     try {
-      const { error } = await supabase
-        .from("contactlist")
-        .delete()
-        .eq("id", contactId);
-
-      // await deleteContact(contactId);
+      await deleteContact(contactId);
       const filteredContacts = contacts.filter((c) => c.id !== contactId);
       setContacts(filteredContacts);
-    } catch (error) {}
+
+      Toast.fire({
+        icon: "success",
+        title: "Contact deleted successfully!",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Box width="400px" sx={{ width: { xl: "1488px" } }} m="auto">
