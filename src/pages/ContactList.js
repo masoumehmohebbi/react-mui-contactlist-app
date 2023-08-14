@@ -19,33 +19,27 @@ import {
 import { useEffect } from "react";
 import getContacts from "../services/getContactsService";
 import { useNavigate } from "react-router-dom";
-import supabase from "../supabase";
+import { motion } from "framer-motion";
 
 export default function ContactList({
   contacts,
   setContacts,
   allContacts,
-  setallContacts,
   deleteContactHandler,
 }) {
-  const [date, setDate] = React.useState(new Date());
-  const ref = React.useRef(new Date());
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    ref.current = new Date();
-
     const fetchContacts = async () => {
-      // const { data } = await getContacts();
-      let { data, error } = await supabase.from("contactlist").select("*");
+      const { data } = await getContacts();
       setContacts(data);
-      console.log(data);
     };
-
     try {
       fetchContacts();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteOneContactHandler = (contactId) => {
@@ -59,7 +53,10 @@ export default function ContactList({
         setContacts={setContacts}
         contacts={contacts}
       />
-      <Box my={7} component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, marginY: { xs: "100px", sm: "65px" } }}
+      >
         {contacts.length === 0 ? (
           <Typography
             sx={{
@@ -109,9 +106,7 @@ export default function ContactList({
                           component="span"
                           sx={{ color: "#65a30d", fontWeight: "600" }}
                         >
-                          {/* {new Date().toLocaleString() + ""} */}
-                          {/* {new Date().toLocaleDateString()} */}
-                          {date.toLocaleString() + ""}
+                          {contact.time}
                         </Typography>
                       </Typography>
                       <Typography
@@ -173,51 +168,84 @@ export default function ContactList({
                         }}
                       >
                         <Tooltip title="Detail">
-                          <RemoveRedEye
-                            onClick={() =>
-                              navigate(`/user/${contact.id}`, {
-                                state: { contact: contact },
-                              })
-                            }
-                            sx={{
-                              "&:hover": {
-                                color: "#166534",
-                              },
-                              cursor: "pointer",
-                              color: "#4f46e5",
-                              fontSize: "19px",
+                          <motion.span
+                            whileHover={{
+                              scale: 1.3,
+                              originX: 0,
                             }}
-                          />
+                            transition={{
+                              type: "spring",
+                              stiffness: "300",
+                            }}
+                          >
+                            <RemoveRedEye
+                              onClick={() =>
+                                navigate(`/user/${contact.id}`, {
+                                  state: { contact: contact },
+                                })
+                              }
+                              sx={{
+                                "&:hover": {
+                                  color: "#166534",
+                                },
+                                cursor: "pointer",
+                                color: "#4f46e5",
+                                fontSize: "19px",
+                              }}
+                            />
+                          </motion.span>
                         </Tooltip>
 
                         <Tooltip title="Edit">
-                          <Edit
-                            onClick={() => navigate(`/edit/${contact.id}`)}
-                            sx={{
-                              "&:hover": {
-                                color: "#166534",
-                              },
-                              cursor: "pointer",
-                              color: "#16a34a",
-                              fontSize: "19px",
+                          <motion.span
+                            whileHover={{
+                              scale: 1.3,
+                              originX: 0,
                             }}
-                          />
+                            transition={{
+                              type: "spring",
+                              stiffness: "300",
+                            }}
+                          >
+                            <Edit
+                              onClick={() => navigate(`/edit/${contact.id}`)}
+                              sx={{
+                                "&:hover": {
+                                  color: "#166534",
+                                },
+                                cursor: "pointer",
+                                color: "#16a34a",
+                                fontSize: "19px",
+                              }}
+                            />
+                          </motion.span>
                         </Tooltip>
 
                         <Tooltip
                           title="Delete"
                           onClick={() => deleteOneContactHandler(contact.id)}
                         >
-                          <RestoreFromTrash
-                            sx={{
-                              "&:hover": {
-                                color: "#166534",
-                              },
-                              cursor: "pointer",
-                              color: "#e11d48",
-                              fontSize: "19px",
+                          <motion.span
+                            whileHover={{
+                              scale: 1.3,
+                              originX: 0,
                             }}
-                          />
+                            transition={{
+                              type: "spring",
+                              stiffness: "300",
+                            }}
+                          >
+                            <RestoreFromTrash
+                              sx={{
+                                "&:hover": {
+                                  color: "#166534",
+                                },
+                                cursor: "pointer",
+                                color: "#e11d48",
+                                fontSize: "19px",
+                              }}
+                            />
+                          </motion.span>
                         </Tooltip>
                       </Box>
                     </CardActions>
