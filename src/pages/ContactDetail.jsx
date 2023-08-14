@@ -1,20 +1,26 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import SideNav from "../components/SideNav";
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 export default function ContactDetail() {
   const { state } = useLocation();
-  const { firstname, lastname, email, gender, phonenumber, relationship } =
-    state.contact;
+  const {
+    firstname,
+    lastname,
+    email,
+    gender,
+    phonenumber,
+    relationship,
+    fullTime,
+  } = state.contact;
 
   return (
     <Box sx={{ display: "flex", fontSize: "35px" }}>
@@ -113,6 +119,20 @@ export default function ContactDetail() {
                   align="left"
                 >
                   {relationship}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  align="left"
+                >
+                  When Added?
+                </TableCell>
+                <TableCell
+                  sx={{ fontWeight: "600", fontSize: "16px" }}
+                  align="left"
+                >
+                  {fullTime}
                 </TableCell>
               </TableRow>
             </TableBody>
