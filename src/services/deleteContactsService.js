@@ -1,7 +1,7 @@
-import http from "./httpService";
+import supabase from "../supabase";
 
 const deleteContact = (id) => {
-  return http.delete(`/contacts/${id}`);
+  return supabase.from("contactlist").delete().eq("id", id);
 };
 
 export default deleteContact;
