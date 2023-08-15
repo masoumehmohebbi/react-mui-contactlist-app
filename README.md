@@ -7,7 +7,8 @@ React ContactList App, based on Material-UI library And Supabase-DB
 </figure>
 
 ## Description
-...
+This is a contact list application. which I developed with the UI material library and the ReactJs library. At first I used Json Server but finally I decided to use Supabase database. It was the first time I used Supabase and it had its own challenges and I enjoyed working with that.
+
 ## Features
 📱🔥 Responsive styles
 ✅
