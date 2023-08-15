@@ -2,6 +2,8 @@
 React ContactList App, based on Material-UI library
 <figure>
   <img src="https://github.com/masoumehmohebbi/react-mui-contactlist-app/blob/main/react-mui-contactlist-app-1.PNG"/>
+  <img src="https://github.com/masoumehmohebbi/react-mui-contactlist-app/blob/main/react-mui-contactlist-app-2.PNG"/>
+  <img src="https://github.com/masoumehmohebbi/react-mui-contactlist-app/blob/main/react-mui-contactlist-app-3.PNG"/>
 </figure>
 ## Description
 ...
