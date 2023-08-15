@@ -32,3 +32,6 @@ This application has features such as deleting, adding, editing, viewing more in
   <li>SweeitAlert2</li>
   <li>Framer Motion</li>
 </ul>
+
+## Author
+<a href="https://www.linkedin.com/in/masoumemohebbi">Masoume mohebbi</a>
