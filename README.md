@@ -8,11 +8,15 @@ React ContactList App, based on Material-UI library And Supabase-DB
 
 ## Description
 This is a contact list application. which I developed with the UI material library and the ReactJs library. At first I used Json Server but finally I decided to use Supabase database. It was the first time I used Supabase and it had its own challenges and I enjoyed working with that.
+In this application, we enter user information such as number, email, gender, etc., and even determine the relationship of that user with us. And only a small amount of information is displayed in the contact list, and if we want to see more information about that user and even when that user was added, we can click on the details icon and see all the information.
+This application has features such as deleting, adding, editing, viewing more information and searching for the user.
 
 ## Features
-📱🔥 Responsive styles
-✅
-⚡️
+🔥 Responsive styles
+📱 Add, Delete, Edit Users
+✅ viewing more information About Users
+⚡️ Search Users
+
 ## Requirements
 <ul>
   <li>React</li>
@@ -24,8 +28,6 @@ This is a contact list application. which I developed with the UI material libra
   <li>HTML</li>
   <li>Material Ui</li>
   <li>React Js</li>
-  <li>Json Server</li>
-  <li>Axios Library</li>
   <li>Supabase Database</li>
   <li>SweeitAlert2</li>
   <li>Framer Motion</li>
